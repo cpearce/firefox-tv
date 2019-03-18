@@ -45,7 +45,10 @@ class FirefoxTestRunner : AndroidJUnitRunner() {
         fakeServiceLocator.swapIfNotNull()
 
         super.onCreate(arguments)
-
+	
+    /**
+     * This flag sets a preferences to keep the screen on between tests which addresses timing issues seen on the device.
+     */
         ActivityLifecycleMonitorRegistry.getInstance().addLifecycleCallback(object : ActivityLifecycleCallback {
             override fun onActivityLifecycleChanged(activity: Activity, stage: Stage) {
                 if (stage === Stage.PRE_ON_CREATE) {
